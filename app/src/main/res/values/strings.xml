@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CalculadoraIMC2</string>
+    <string name="tvIMC">Calculadora IMC</string>
+    <string name="tvEstatura">Estatura(m):</string>
+    <string name="tvPeso">Peso(kg):</string>
+    <string name="etPeso">Ejemplo: 75</string>
+    <string name="etEstatura">Ejemplo: 1.75</string>
+    <string name="btCalcular">Calcular</string>
+    <string name="tvResultado">Resultado IMC:</string>
+</resources>
