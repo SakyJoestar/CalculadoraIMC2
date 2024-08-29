@@ -13,21 +13,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-//            insets
-//        }
         button()
     }
 
     private fun button(){
         binding.button.setOnClickListener{
+
             var pesoTxt= binding.editTextPeso.text.toString()
             var estaturaTxt= binding.editTextEstatura.text.toString()
-            var peso = pesoTxt.toFloat()
-            var estatura = estaturaTxt.toFloat()
-            calcularIMC(peso, estatura)
+            if(pesoTxt.isEmpty()|| estaturaTxt.isEmpty())
+            {
+                binding.textViewResultadoMostrar.text = "Rellene bien los tados"
+            }
+            else{
+
+                var peso = pesoTxt.toFloat()
+                var estatura = estaturaTxt.toFloat()
+                calcularIMC(peso, estatura)
+            }
+
         }
     }
     private fun calcularIMC(peso: Float, estatura: Float){
