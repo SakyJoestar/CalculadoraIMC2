@@ -7,4 +7,5 @@
     <string name="etEstatura">Ejemplo: 1.75</string>
     <string name="btCalcular">Calcular</string>
     <string name="tvResultado">Resultado IMC:</string>
+    <string name="salidaErrorCampos">Rellene bien los campos</string>
 </resources>
