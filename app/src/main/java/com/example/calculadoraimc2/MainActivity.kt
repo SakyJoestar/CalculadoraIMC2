@@ -1,11 +1,9 @@
 package com.example.calculadoraimc2
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.calculadoraimc2.databinding.ActivityMainBinding
+import kotlin.math.pow
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -19,38 +17,35 @@ class MainActivity : AppCompatActivity() {
     private fun button(){
         binding.button.setOnClickListener{
 
-            var pesoTxt= binding.editTextPeso.text.toString()
-            var estaturaTxt= binding.editTextEstatura.text.toString()
+            val pesoTxt= binding.editTextPeso.text.toString()
+            val estaturaTxt= binding.editTextEstatura.text.toString()
             if(pesoTxt.isEmpty()|| estaturaTxt.isEmpty())
             {
-                binding.textViewResultadoMostrar.text = "Rellene bien los tados"
+                binding.textViewResultadoMostrar.text = "Rellene bien los datos"
             }
             else{
 
-                var peso = pesoTxt.toFloat()
-                var estatura = estaturaTxt.toFloat()
+                val peso = pesoTxt.toFloat()
+                val estatura = estaturaTxt.toFloat()
                 calcularIMC(peso, estatura)
             }
 
         }
     }
     private fun calcularIMC(peso: Float, estatura: Float){
-        var imc = peso/(estatura * estatura)
+        val imc = peso/(estatura.pow(2))
 
         lateinit var resultado: String
 
-        if(imc < 18.5){
-            resultado = "Bajo Peso"
+        resultado = when {
+            imc < 18.5 -> "Bajo peso"
+            imc in 18.5..24.9 -> "Peso normal"
+            imc in 25.0..29.9 -> "Sobrepeso"
+            else -> "obesidad"
         }
-        else if(imc>= 18.5 && imc <=24.9){
-            resultado = "Peso normal"
-        }
-        else if(imc>= 25 && imc <= 29.9){
-            resultado = "Sobrepeso"
-        }
-        else if(imc >= 30){
-            resultado = "Obesidad"
-        }
-        binding.textViewResultadoMostrar.text = resultado
+
+        val imcRedondeado = String.format("%.2f", imc)
+        val finaltext= "$imcRedondeado\n$resultado"
+        binding.textViewResultadoMostrar.text = finaltext
     }
 }
